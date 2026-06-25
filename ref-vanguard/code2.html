@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VANGUARD_OS - SPECIFICATIONS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#d2eca2",
+              "primary-container": "#556b2f",
+              "surface-bright": "#383a35",
+              "surface": "#121410",
+              "on-secondary": "#3a3009",
+              "surface-tint": "#b6d088",
+              "on-secondary-container": "#c8b885",
+              "on-primary-fixed-variant": "#394d14",
+              "inverse-primary": "#50652a",
+              "secondary-fixed-dim": "#d6c692",
+              "on-tertiary-fixed": "#2f1500",
+              "on-surface-variant": "#c5c8b8",
+              "on-error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#6e3900",
+              "surface-container": "#1e201c",
+              "secondary": "#d6c692",
+              "outline-variant": "#45483c",
+              "tertiary-container": "#985100",
+              "on-tertiary": "#4d2600",
+              "tertiary-fixed": "#ffdcc3",
+              "on-secondary-fixed": "#231b00",
+              "on-primary-fixed": "#131f00",
+              "tertiary": "#ffb77d",
+              "surface-container-high": "#292b26",
+              "on-surface": "#e3e3dc",
+              "primary-fixed-dim": "#b6d088",
+              "on-error": "#690005",
+              "secondary-container": "#544820",
+              "background": "#121410",
+              "surface-dim": "#121410",
+              "primary": "#b6d088",
+              "inverse-surface": "#e3e3dc",
+              "surface-container-highest": "#333531",
+              "on-tertiary-container": "#ffd9be",
+              "on-primary": "#233600",
+              "on-primary-container": "#d0eba1",
+              "outline": "#8f9284",
+              "error": "#ffb4ab",
+              "inverse-on-surface": "#2f312d",
+              "error-container": "#93000a",
+              "on-background": "#e3e3dc",
+              "tertiary-fixed-dim": "#ffb77d",
+              "surface-container-lowest": "#0d0f0b",
+              "on-secondary-fixed-variant": "#51461e",
+              "surface-container-low": "#1a1c18",
+              "surface-variant": "#333531",
+              "secondary-fixed": "#f3e2ac"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-panel {
+        background: rgba(51, 53, 49, 0.6);
+        backdrop-filter: blur(12px);
+      }
+      .grid-bg {
+        background-image: radial-gradient(circle at 1px 1px, rgba(182, 208, 136, 0.05) 1px, transparent 0);
+        background-size: 24px 24px;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body grid-bg min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-stone-900/60 backdrop-blur-xl bg-stone-800/40 border-b border-white/10 shadow-2xl shadow-black/20 flex justify-between items-center w-full px-6 py-3">
+<div class="text-xl font-bold tracking-tighter text-[#b6d088] font-['Space_Grotesk']">VANGUARD_OS</div>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] uppercase tracking-wider text-sm">
+<a class="text-stone-400 hover:text-stone-200 transition-colors active:scale-95 transition-transform duration-150" href="#">DASHBOARD</a>
+<a class="text-[#b6d088] border-b-2 border-[#b6d088] pb-1 active:scale-95 transition-transform duration-150" href="#">SPECIFICATIONS</a>
+<a class="text-stone-400 hover:text-stone-200 transition-colors active:scale-95 transition-transform duration-150" href="#">TELEMETRY</a>
+<a class="text-stone-400 hover:text-stone-200 transition-colors active:scale-95 transition-transform duration-150" href="#">ARCHIVE</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-stone-400 hover:bg-white/5 p-2 rounded transition-colors active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-stone-400 hover:bg-white/5 p-2 rounded transition-colors active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img alt="Operator Profile" class="w-full h-full object-cover" data-alt="Operator Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCeUouy85TbPgrE8aXeml_jTXVYeSLCB4uRW0RNA7-x5msVi1fympjvXKm1M527zKWRj_ZoMl0VuLK9ieaIK3Zq-oNyEQJNh8LiErECofcLcqf6vgbgtVW7eKXM4cT0QZfwM7Wk04ZewIL66Z4jAZp_X28fS_Bfliq4hlaUsLMg8THqYkddDDOT74__iFLECe4Uiv7t3GOLFECgizUUyQeXQgpdo582tGZ2QL_SasydQSIf_iKfL3J02iqHI_N9o5dFVS7gp2FxQ"/>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Breadcrumb / Back Navigation -->
+<div class="mb-8 flex items-center gap-2">
+<button class="flex items-center gap-2 text-tertiary font-label text-sm tracking-widest uppercase hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                BACK_TO_DASHBOARD
+            </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Data Grid -->
+<div class="lg:col-span-5 space-y-8">
+<div>
+<h1 class="font-headline text-5xl font-bold tracking-tighter text-on-surface mb-2">XV-700_TACTICAL</h1>
+<p class="font-label text-primary tracking-widest text-xs uppercase opacity-70">S/N: 2024-VANGUARD-PRT-09</p>
+</div>
+<!-- Performance Card -->
+<section class="glass-panel p-6 rounded-xl border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<h2 class="font-headline text-lg font-bold tracking-tight uppercase">Performance</h2>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label text-xs text-on-surface-variant uppercase">Material Strength</span>
+<span class="font-headline font-bold text-primary">85 MPa</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 85%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label text-[10px] text-on-surface-variant uppercase mb-1">Impact Resistance</p>
+<p class="font-headline text-xl font-bold text-on-surface">HIGH</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label text-[10px] text-on-surface-variant uppercase mb-1">Print Accuracy</p>
+<p class="font-headline text-xl font-bold text-on-surface">0.05mm</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Dimensions Card -->
+<section class="glass-panel p-6 rounded-xl border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">straighten</span>
+<h2 class="font-headline text-lg font-bold tracking-tight uppercase">Dimensions</h2>
+</div>
+<div class="grid grid-cols-2 gap-y-6">
+<div>
+<p class="font-label text-[10px] text-on-surface-variant uppercase mb-1">Height</p>
+<p class="font-headline text-2xl font-bold">120<span class="text-xs text-outline ml-1">MM</span></p>
+</div>
+<div>
+<p class="font-label text-[10px] text-on-surface-variant uppercase mb-1">Width</p>
+<p class="font-headline text-2xl font-bold">85<span class="text-xs text-outline ml-1">MM</span></p>
+</div>
+<div>
+<p class="font-label text-[10px] text-on-surface-variant uppercase mb-1">Depth</p>
+<p class="font-headline text-2xl font-bold">30<span class="text-xs text-outline ml-1">MM</span></p>
+</div>
+<div>
+<p class="font-label text-[10px] text-on-surface-variant uppercase mb-1">Total Weight</p>
+<p class="font-headline text-2xl font-bold text-secondary">245<span class="text-xs text-outline ml-1">G</span></p>
+</div>
+</div>
+</section>
+</div>
+<!-- Middle/Right Column: 3D Visual Focus -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<div class="relative glass-panel rounded-xl border border-outline-variant/15 aspect-square lg:aspect-video overflow-hidden flex items-center justify-center">
+<div class="absolute top-4 left-4 flex gap-2">
+<div class="bg-primary/20 text-primary-fixed text-[10px] px-2 py-0.5 rounded font-label uppercase">3D_MODEL_VIEW</div>
+<div class="bg-tertiary/20 text-tertiary text-[10px] px-2 py-0.5 rounded font-label uppercase">HI_RES_RENDER</div>
+</div>
+<!-- Device Placeholder Render -->
+<img class="w-full h-full object-cover opacity-60" data-alt="Technical 3D render of a tactical device with industrial housing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCeUouy85TbPgrE8aXeml_jTXVYeSLCB4uRW0RNA7-x5msVi1fympjvXKm1M527zKWRj_ZoMl0VuLK9ieaIK3Zq-oNyEQJNh8LiErECofcLcqf6vgbgtVW7eKXM4cT0QZfwM7Wk04ZewIL66Z4jAZp_X28fS_Bfliq4hlaUsLMg8THqYkddDDOT74__iFLECe4Uiv7t3GOLFECgizUUyQeXQgpdo582tGZ2QL_SasydQSIf_iKfL3J02iqHI_N9o5dFVS7gp2FxQ"/>
+<!-- HUD Overlays -->
+<div class="absolute bottom-6 right-6 text-right">
+<p class="font-label text-[10px] text-on-surface-variant uppercase">Render Engine</p>
+<p class="font-headline text-sm font-bold tracking-widest">RAYTRACED-V4</p>
+</div>
+<div class="absolute inset-0 border-[24px] border-transparent pointer-events-none">
+<div class="w-full h-full border border-primary/10 flex items-center justify-center">
+<div class="w-16 h-16 border border-primary/20 rounded-full opacity-20"></div>
+</div>
+</div>
+</div>
+<!-- Environmental Resistance Card -->
+<section class="glass-panel p-6 rounded-xl border border-outline-variant/15 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">thermostat</span>
+<h2 class="font-label text-[10px] text-on-surface-variant uppercase">Op. Temperature</h2>
+</div>
+<p class="font-headline text-xl font-bold">-40C <span class="text-outline font-normal">to</span> +85C</p>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">water_drop</span>
+<h2 class="font-label text-[10px] text-on-surface-variant uppercase">Protection</h2>
+</div>
+<p class="font-headline text-xl font-bold">IP67 RATING</p>
+<p class="text-[9px] text-outline uppercase tracking-widest">Dust/Waterproof</p>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">wb_sunny</span>
+<h2 class="font-label text-[10px] text-on-surface-variant uppercase">UV Stability</h2>
+</div>
+<div class="flex items-center gap-2">
+<p class="font-headline text-xl font-bold">LEVEL 5</p>
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(182,208,136,0.5)]"></span>
+</div>
+</div>
+</section>
+<!-- Actions / Secondary Stats -->
+<div class="flex flex-wrap gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-container px-8 py-3 rounded-lg font-headline font-bold text-on-primary flex items-center gap-3 active:scale-95 transition-all">
+<span class="material-symbols-outlined">print</span>
+                        GENERATE_BLUEPRINT
+                    </button>
+<button class="bg-surface-container-highest/60 hover:bg-surface-container-highest px-8 py-3 rounded-lg border border-outline-variant/20 font-headline font-bold text-on-surface flex items-center gap-3 transition-all">
+<span class="material-symbols-outlined">share</span>
+                        EXPORT_TELEMETRY
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 border-t border-white/5 tonal-shift bg-stone-900 flex flex-col items-center gap-4 w-full px-8">
+<div class="flex gap-8">
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-stone-500 hover:text-stone-300 transition-colors" href="#">SYSTEM_STATUS</a>
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-stone-500 hover:text-stone-300 transition-colors" href="#">ENCRYPTION_KEYS</a>
+<a class="font-['Space_Grotesk'] text-[10px] tracking-widest uppercase text-stone-500 hover:text-stone-300 transition-colors" href="#">SUPPORT</a>
+</div>
+<div class="text-[#556b2f] font-black font-['Space_Grotesk'] text-[10px] tracking-[0.2em]">
+            ©2024 VANGUARD TACTICAL SYSTEMS | LAYER-0 PRINT PROTOCOL
+        </div>
+</footer>
+</body></html>

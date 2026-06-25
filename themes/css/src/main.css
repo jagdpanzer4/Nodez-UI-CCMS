@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply dark;
+  }
+
+  body {
+    @apply bg-surface text-on-surface font-body;
+  }
+
+  ::selection {
+    background-color: #ffb77d;
+    color: #4d2600;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+
+  /* Custom scrollbar — subtle tactical look */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #121410; }
+  ::-webkit-scrollbar-thumb { background: #45483c; border-radius: 2px; }
+
+  /* CCMS edit mode — prevent toolbar overlap with fixed nav */
+  .ccm-toolbar-visible .vanguard-nav { top: 48px; }
+  .ccm-toolbar-visible .vanguard-nav__mobile { top: calc(4rem + 48px); }
+}
+
+@layer components {
+
+  /* ── Navigation ──────────────────────────────────── */
+  .vanguard-nav {
+    @apply fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16;
+    background: rgba(41, 43, 38, 0.60);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 32px 64px -15px rgba(18, 20, 16, 0.06);
+    transition: box-shadow 150ms linear;
+  }
+
+  .vanguard-nav--scrolled {
+    box-shadow: 0 8px 32px 0 rgba(18, 20, 16, 0.20);
+  }
+
+  .vanguard-nav__logo {
+    @apply font-headline font-bold tracking-widest text-xl text-primary;
+  }
+
+  .vanguard-nav__link {
+    @apply font-label tracking-tighter uppercase text-sm text-on-surface-variant
+           hover:text-on-surface transition-colors duration-150;
+  }
+
+  .vanguard-nav__link--active {
+    @apply text-primary;
+    border-bottom: 2px solid #b6d088;
+    padding-bottom: 4px;
+  }
+
+  /* ── Hero ────────────────────────────────────────── */
+  .vanguard-hero {
+    @apply relative min-h-[921px] flex items-center overflow-hidden px-8 md:px-24;
+  }
+
+  .vanguard-hero__bg {
+    @apply absolute inset-0 z-0;
+    background: radial-gradient(circle at 70% 50%, rgba(85, 107, 47, 0.15) 0%, rgba(18, 20, 16, 1) 70%);
+  }
+
+  .vanguard-hero__ring {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none;
+  }
+
+  .vanguard-hero__badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-lg;
+    background: rgba(85, 107, 47, 0.30);
+    border: 1px solid rgba(182, 208, 136, 0.20);
+  }
+
+  /* ── Cards ───────────────────────────────────────── */
+  .vanguard-card {
+    @apply bg-surface-container rounded-xl border transition-all duration-150;
+    border-color: rgba(69, 72, 60, 0.10);
+  }
+
+  .vanguard-card:hover {
+    border-color: rgba(182, 208, 136, 0.30);
+  }
+
+  .vanguard-card--high {
+    @apply bg-surface-container-highest rounded-xl border transition-all duration-150;
+    border-color: rgba(69, 72, 60, 0.10);
+  }
+
+  .vanguard-card--high:hover {
+    border-color: rgba(255, 183, 125, 0.30);
+  }
+
+  .vanguard-card--accent {
+    @apply bg-primary-container rounded-xl relative overflow-hidden;
+  }
+
+  .vanguard-card--glass {
+    @apply rounded-xl border;
+    background: rgba(51, 53, 49, 0.60);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(69, 72, 60, 0.15);
+  }
+
+  /* ── Buttons ─────────────────────────────────────── */
+  .vanguard-btn-primary {
+    @apply inline-flex items-center gap-3 px-8 py-3 rounded-lg font-headline font-bold
+           text-on-primary transition-all duration-150 cursor-pointer no-underline;
+    background: linear-gradient(to right, #b6d088, #556b2f);
+  }
+
+  .vanguard-btn-primary:hover { opacity: 0.92; }
+  .vanguard-btn-primary:active { transform: scale(0.98); }
+
+  .vanguard-btn-cta {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-lg font-headline font-bold
+           uppercase tracking-widest text-on-tertiary transition-all duration-150 cursor-pointer
+           no-underline relative overflow-hidden;
+    background: linear-gradient(to right, #ffb77d, #985100);
+  }
+
+  .vanguard-btn-cta:hover { opacity: 0.92; }
+  .vanguard-btn-cta:active { transform: scale(0.98); }
+
+  .vanguard-btn-ghost {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-lg font-headline font-bold
+           uppercase tracking-widest text-on-surface hover:bg-white/5 transition-all
+           duration-150 cursor-pointer no-underline;
+    border: 1px solid rgba(69, 72, 60, 0.30);
+  }
+
+  /* ── Form Inputs (bottom-border style, no top/side borders) ── */
+  .vanguard-input {
+    @apply w-full bg-transparent px-0 py-3 text-on-surface font-body text-sm
+           transition-all duration-150;
+    border: none;
+    border-bottom: 2px solid #8f9284;
+    outline: none;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .vanguard-input:focus {
+    border-bottom-color: #b6d088;
+    background: rgba(85, 107, 47, 0.05);
+  }
+
+  .vanguard-input::placeholder {
+    color: #8f9284;
+  }
+
+  /* ── Data readouts / Stat blocks ─────────────────── */
+  .vanguard-stat {
+    @apply p-6 rounded-xl;
+    background: rgba(51, 53, 49, 0.60);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(69, 72, 60, 0.15);
+  }
+
+  .vanguard-stat__label {
+    @apply font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1 block;
+  }
+
+  .vanguard-stat__value {
+    @apply font-headline text-2xl font-bold text-on-surface;
+  }
+
+  /* ── Progress bar ────────────────────────────────── */
+  .vanguard-progress {
+    @apply h-1 w-full rounded-full overflow-hidden;
+    background: #333531;
+  }
+
+  .vanguard-progress__fill {
+    @apply h-full rounded-full;
+    background: #b6d088;
+    transition: width 150ms linear;
+  }
+
+  /* ── Status chips ────────────────────────────────── */
+  .vanguard-chip {
+    @apply inline-flex items-center gap-2 px-3 py-1 font-label text-xs text-on-surface-variant;
+    background: #333531;
+    border-radius: 0.125rem;
+  }
+
+  .vanguard-chip::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: #ffb77d;
+    flex-shrink: 0;
+  }
+
+  /* ── Labels (ALL CAPS tactical category labels) ───── */
+  .vanguard-label {
+    @apply font-label text-xs uppercase tracking-widest text-tertiary;
+  }
+
+  /* ── Section layout helpers ──────────────────────── */
+  .vanguard-section {
+    @apply py-24 px-8 md:px-24;
+  }
+
+  .vanguard-container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* ── Content block typography (vanguard-content) ──── */
+  .vanguard-content h1,
+  .vanguard-content h2,
+  .vanguard-content h3,
+  .vanguard-content h4 {
+    @apply font-headline tracking-tighter text-on-surface;
+  }
+
+  .vanguard-content h1 { @apply text-5xl font-bold mb-6; }
+  .vanguard-content h2 { @apply text-4xl font-bold uppercase mb-4 mt-12; }
+  .vanguard-content h3 { @apply text-2xl font-bold mb-3 mt-8; }
+  .vanguard-content h4 { @apply vanguard-label mb-2 mt-6; }
+
+  .vanguard-content p {
+    @apply font-body text-on-surface-variant leading-relaxed mb-4;
+  }
+
+  .vanguard-content a {
+    @apply text-primary hover:text-primary-fixed underline transition-colors duration-150;
+  }
+
+  .vanguard-content ul,
+  .vanguard-content ol {
+    @apply font-body text-on-surface-variant leading-relaxed mb-4 pl-6;
+  }
+
+  .vanguard-content li { @apply mb-2; }
+
+  .vanguard-content blockquote {
+    @apply border-l-2 border-primary/40 pl-6 italic text-on-surface-variant my-8;
+  }
+
+  .vanguard-content strong { @apply text-on-surface font-bold; }
+
+  .vanguard-content img {
+    @apply rounded-xl w-full my-8;
+    box-shadow: 0 0 50px rgba(182, 208, 136, 0.10);
+  }
+
+  /* ── CCMS edit mode guards ───────────────────────── */
+  .ccm-edit-mode .vanguard-card--glass,
+  .ccm-edit-mode .vanguard-card,
+  .ccm-edit-mode .vanguard-card--high,
+  .ccm-edit-mode .vanguard-card--accent {
+    min-height: 80px;
+  }
+}
+
+@layer utilities {
+  .dark {
+    color-scheme: dark;
+  }
+
+  /* Glassmorphism utility (for non-component uses) */
+  .glass-panel {
+    background: rgba(51, 53, 49, 0.60);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Subtle dot grid background (used on product page) */
+  .grid-bg {
+    background-image: radial-gradient(circle at 1px 1px, rgba(182, 208, 136, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* Orange text glow for key metrics */
+  .text-glow {
+    text-shadow: 0 0 15px rgba(255, 183, 125, 0.30);
+  }
+}

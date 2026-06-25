@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEON_CORE | Luminescent Tech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;600;700&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #111318;
+            color: #e2e2e8;
+            overflow-x: hidden;
+        }
+        .glass-container {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        .neon-glow-hover:hover {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.15);
+            border-color: rgba(0, 240, 255, 0.5);
+        }
+        .active-glow {
+            filter: drop-shadow(0 0 8px #00f0ff);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111318;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #00dbe9;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#1e2024",
+                        "primary": "#dbfcff",
+                        "on-primary-fixed": "#002022",
+                        "on-secondary-fixed-variant": "#5700c9",
+                        "on-primary": "#00363a",
+                        "on-secondary-fixed": "#23005b",
+                        "surface-variant": "#333539",
+                        "on-tertiary": "#00169c",
+                        "surface": "#111318",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "inverse-surface": "#e2e2e8",
+                        "surface-dim": "#111318",
+                        "on-secondary-container": "#ddcdff",
+                        "tertiary-fixed": "#dfe0ff",
+                        "primary-fixed": "#7df4ff",
+                        "surface-tint": "#00dbe9",
+                        "surface-bright": "#37393e",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004f54",
+                        "error-container": "#93000a",
+                        "surface-container-lowest": "#0c0e12",
+                        "tertiary": "#f7f5ff",
+                        "surface-container-low": "#1a1c20",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#0023d9",
+                        "primary-container": "#00f0ff",
+                        "on-background": "#e2e2e8",
+                        "outline-variant": "#3b494b",
+                        "background": "#111318",
+                        "on-tertiary-container": "#2741ff",
+                        "on-surface": "#e2e2e8",
+                        "inverse-on-surface": "#2f3035",
+                        "on-tertiary-fixed": "#000a63",
+                        "secondary-container": "#7000ff",
+                        "inverse-primary": "#006970",
+                        "outline": "#849495",
+                        "surface-container-highest": "#333539",
+                        "primary-fixed-dim": "#00dbe9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Sora"],
+                        "label-sm": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "body-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg-mobile": ["Sora"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest selection:bg-primary-container selection:text-on-primary-fixed">
+<!-- TOP NAVIGATION -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter md:px-margin-desktop h-xl left-1/2 -translate-x-1/2 bg-surface/5 backdrop-blur-[20px] border-b border-primary-container/20">
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">NEON_CORE</div>
+<div class="hidden md:flex items-center gap-gutter">
+<a class="font-label-md text-label-md text-primary-container font-bold border-b-2 border-primary-container pb-1 hover:text-primary transition-colors duration-300" href="#">Platform</a>
+<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Solutions</a>
+<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Network</a>
+<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Documentation</a>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative group hidden sm:block">
+<input class="bg-surface-container-low border-none rounded-full px-md py-xs font-label-sm text-label-sm text-on-surface focus:ring-1 focus:ring-primary-container transition-all w-48 focus:w-64" placeholder="Search components..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant scale-75">search</span>
+</div>
+<button class="bg-primary-container text-on-primary-fixed px-md py-xs font-label-md text-label-md font-bold rounded-full hover:scale-95 transition-transform">GET STARTED</button>
+</div>
+</nav>
+<!-- MAIN CONTENT -->
+<main class="pt-[120px] pb-xl px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto">
+<!-- HERO SECTION -->
+<section class="mb-xl relative">
+<div class="absolute -top-20 -left-20 w-96 h-96 bg-primary-container/5 rounded-full blur-[100px] -z-10"></div>
+<div class="glass-container rounded-xl p-lg md:p-[80px] flex flex-col md:flex-row items-center gap-lg border-primary-container/20 relative overflow-hidden">
+<div class="w-full md:w-1/2 space-y-md">
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-primary-container/10 border border-primary-container/30 rounded-full">
+<span class="w-2 h-2 bg-primary-container rounded-full animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary-container tracking-widest uppercase">System v2.4 Live</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl leading-tight">The Future is <span class="text-primary-container">Modular.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">Experience the next generation of UI design with our high-performance glassmorphic components, optimized for speed and precision.</p>
+<div class="flex flex-wrap gap-sm pt-sm">
+<button class="bg-primary-container text-on-primary-fixed px-lg py-sm font-label-md text-label-md font-bold rounded-xl hover:opacity-90 transition-all flex items-center gap-sm">
+                        EXPLORE CORE <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="border border-outline-variant px-lg py-sm font-label-md text-label-md font-bold rounded-xl hover:bg-surface-variant transition-all">
+                        DOCUMENTATION
+                    </button>
+</div>
+</div>
+<div class="w-full md:w-1/2">
+<img class="w-full h-[400px] object-cover rounded-xl border border-primary-container/10 grayscale-[0.5] brightness-75 hover:grayscale-0 transition-all duration-700" data-alt="A high-tech digital interface displaying complex data visualizations and abstract 3D geometric structures. The scene is rendered in a deep charcoal and forest green palette with vibrant neon lime accents and soft frosted glass textures. Lighting is atmospheric and cinematic with subtle lens flares and sharp digital details representing advanced computation." src="https://lh3.googleusercontent.com/aida/AP1WRLv-AWOJ1AuMZckyhJfzbGu4gHI4JYGebN2JWi5Q1MEdo37XcIDPMPd9IL7PP37vBwa8QjNIK3hwp9rePHZ57K0tGJzgbCAqdSKbQ4DWrTyF5sNXxpQYcsIrk7rakHQZ3fDbQK8OPOq06p4lEbhGVid7BLfAic8aJxb388G9TR_m_P1TH-j8U-xoDE1mG-latbs0WAyavICznj4xfnz3GXLqsRDgIMGX24AoH01Jb4rgTEqWL0XTv47qvA"/>
+</div>
+</div>
+</section>
+<!-- COMPONENT SHOWCASE GRID -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+<!-- SERVICE GRID -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-container p-md space-y-sm rounded-xl hover:translate-y-[-4px] transition-transform group">
+<span class="material-symbols-outlined text-primary-container text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">dashboard_customize</span>
+<h3 class="font-headline-md text-headline-md">Bento Architecture</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Structured layouts that adapt flawlessly to any screen density with precision grid-mapping.</p>
+</div>
+<div class="glass-container p-md space-y-sm rounded-xl hover:translate-y-[-4px] transition-transform group">
+<span class="material-symbols-outlined text-primary-container text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">blur_on</span>
+<h3 class="font-headline-md text-headline-md">Optical Blur</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time backdrop filtering optimized for high-performance rendering across all modern browsers.</p>
+</div>
+<div class="glass-container p-md space-y-sm rounded-xl hover:translate-y-[-4px] transition-transform group">
+<span class="material-symbols-outlined text-primary-container text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h3 class="font-headline-md text-headline-md">Rapid Deployment</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">One-click integration for NEON_CORE modules, minimizing build times and accelerating time-to-market.</p>
+</div>
+</div>
+<!-- GLASS BUTTONS & NOTIFICATION -->
+<div class="md:col-span-4 space-y-gutter">
+<div class="glass-container p-md rounded-xl space-y-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Button Variants</p>
+<div class="flex flex-col gap-sm">
+<button class="bg-primary-container text-on-primary-fixed px-md py-sm font-label-md text-label-md font-bold rounded-lg neon-glow-hover transition-all">PRIMARY ACTION</button>
+<button class="border border-primary-container/40 text-primary-container px-md py-sm font-label-md text-label-md font-bold rounded-lg hover:bg-primary-container/10 transition-all">SECONDARY OUTLINE</button>
+<button class="bg-surface-variant/50 backdrop-blur-md border border-white/5 px-md py-sm font-label-md text-label-md font-bold rounded-lg hover:bg-surface-variant transition-all">GLASS GHOST</button>
+</div>
+</div>
+<!-- NOTIFICATION TOAST -->
+<div class="glass-container p-sm px-md rounded-full border-primary-container/30 flex items-center gap-sm animate-bounce shadow-2xl shadow-primary-container/5">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed text-sm">notifications_active</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-primary leading-none">Security Alert</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">API key successfully rotated.</p>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary scale-75">close</button>
+</div>
+</div>
+<!-- PRICING TABLE -->
+<div class="md:col-span-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter h-full">
+<div class="glass-container p-md flex flex-col justify-between rounded-xl border-primary-container/10">
+<div class="space-y-sm">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Base Layer</h4>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-lg text-headline-lg text-primary">$49</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/mo</span>
+</div>
+<ul class="space-y-xs pt-sm">
+<li class="flex items-center gap-xs font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container scale-75">check_circle</span> 10 Core Components
+                            </li>
+<li class="flex items-center gap-xs font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container scale-75">check_circle</span> CSS Exports
+                            </li>
+<li class="flex items-center gap-xs font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container scale-75">check_circle</span> Community Support
+                            </li>
+</ul>
+</div>
+<button class="mt-lg w-full border border-outline-variant py-sm font-label-md text-label-md font-bold rounded-lg hover:bg-surface-variant">SELECT PLAN</button>
+</div>
+<div class="glass-container p-md flex flex-col justify-between rounded-xl border-primary-container relative overflow-hidden">
+<div class="absolute top-4 right-[-30px] rotate-45 bg-primary-container text-on-primary-fixed px-10 py-1 font-label-sm text-label-sm font-bold">POPULAR</div>
+<div class="space-y-sm">
+<h4 class="font-label-sm text-label-sm text-primary-container uppercase tracking-widest">Pro Cluster</h4>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-lg text-headline-lg text-primary">$199</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/mo</span>
+</div>
+<ul class="space-y-xs pt-sm">
+<li class="flex items-center gap-xs font-body-md text-body-md">
+<span class="material-symbols-outlined text-primary-container scale-75">check_circle</span> Unlimited Components
+                            </li>
+<li class="flex items-center gap-xs font-body-md text-body-md">
+<span class="material-symbols-outlined text-primary-container scale-75">check_circle</span> Commercial License
+                            </li>
+<li class="flex items-center gap-xs font-body-md text-body-md">
+<span class="material-symbols-outlined text-primary-container scale-75">check_circle</span> 24/7 Node Support
+                            </li>
+</ul>
+</div>
+<button class="mt-lg w-full bg-primary-container text-on-primary-fixed py-sm font-label-md text-label-md font-bold rounded-lg hover:scale-[0.98] transition-transform">SELECT PLAN</button>
+</div>
+</div>
+</div>
+<!-- SEARCH BAR -->
+<div class="md:col-span-12">
+<div class="glass-container p-gutter flex items-center gap-md rounded-xl">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-primary-container">database</span>
+<input class="w-full bg-surface-container-highest/30 border-b border-primary-container/20 focus:border-primary-container transition-all pl-[60px] py-md font-headline-md text-headline-md text-primary outline-none" placeholder="Query the global network database..." type="text"/>
+</div>
+<button class="bg-primary-container text-on-primary-fixed px-lg py-md font-label-md text-label-md font-bold rounded-xl">EXECUTE</button>
+</div>
+</div>
+<!-- CLIENT TESTIMONIAL -->
+<div class="md:col-span-8">
+<div class="glass-container p-lg flex flex-col md:flex-row gap-lg items-center relative rounded-xl">
+<span class="material-symbols-outlined absolute top-4 left-4 text-primary-container/20 text-6xl">format_quote</span>
+<div class="w-24 h-24 rounded-full border-2 border-primary-container p-1">
+<img class="w-full h-full rounded-full object-cover grayscale" data-alt="A portrait of a futuristic digital architect with minimalist cyberpunk aesthetics. The person is illuminated by a subtle green rim light against a dark, out-of-focus tech-filled laboratory background. The overall mood is professional, visionary, and calm, utilizing deep blacks and sharp highlights that match a high-end tech platform aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLvXSA5LaoH1BugGD-HWDaN4Sa_ujqvEEkgu0NDo1jQ3_7oPoUhiBL0Kk2RFZYd0PgucTEJM4LUoR3ZrnP5okN-oolLBZy3HzP5TBkToBwfqbgZIcaS7N3gT83yH869gzL1iYqEMKoqnldlboI9i7NeOl12ydUwX813kZm8DnrbweiBARTONOIDDNvas7Tnf68KZF0qU4zfCBoHCQ5zDnYHSzwJf9lhBhC7NfRE7TUdsg0xrVarqxwQ53w"/>
+</div>
+<div class="flex-1 space-y-sm">
+<p class="font-body-lg text-body-lg text-primary italic">"NEON_CORE has completely redefined how we ship enterprise-grade dashboards. The glassmorphic aesthetic isn't just eye candy; it's a functional layer that improves hierarchy and focus."</p>
+<div>
+<p class="font-label-md text-label-md text-primary-container font-bold">ELARA VANCE</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">CTO, SYNERGY_FLOW</p>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL PREVIEW -->
+<div class="md:col-span-4 h-full">
+<div class="glass-container p-md h-full flex flex-col justify-center items-center text-center gap-md bg-surface-variant/20 rounded-xl">
+<div class="w-16 h-16 rounded-xl border border-primary-container/30 flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-primary-container text-4xl">open_in_new</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Modal Overlay</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Trigger our signature blurred modal for focused interactions and task-specific workflows.</p>
+<button class="border border-primary-container text-primary-container px-md py-xs font-label-md text-label-md rounded-lg hover:bg-primary-container hover:text-on-primary-fixed transition-all" onclick="document.getElementById('demo-modal').classList.remove('hidden')">PREVIEW MODAL</button>
+</div>
+</div>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="w-full py-lg px-gutter md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-lowest border-t border-outline-variant/30 mt-xl">
+<div class="font-headline-md text-headline-md font-light text-on-surface">NEON_CORE</div>
+<div class="flex gap-gutter">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">API Status</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Security</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 NEON_CORE TECHNOLOGY. ALL RIGHTS RESERVED.</p>
+</footer>
+<!-- MODAL COMPONENT -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-margin-mobile" id="demo-modal">
+<div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-md" onclick="this.parentElement.classList.add('hidden')"></div>
+<div class="glass-container max-w-lg w-full p-lg rounded-xl relative z-10 border-primary-container/40">
+<div class="flex justify-between items-start mb-md">
+<h2 class="font-headline-md text-headline-md text-primary">Critical System Update</h2>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" onclick="document.getElementById('demo-modal').classList.add('hidden')">close</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+            Your environment is currently running on an outdated kernel. Please confirm the migration to NEON_CORE v2.4 to maintain optimal system performance and high-contrast rendering.
+        </p>
+<div class="flex justify-end gap-sm">
+<button class="px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" onclick="document.getElementById('demo-modal').classList.add('hidden')">CANCEL</button>
+<button class="bg-primary-container text-on-primary-fixed px-md py-sm font-label-md text-label-md font-bold rounded-lg">INITIATE UPDATE</button>
+</div>
+</div>
+</div>
+<script>
+    // Micro-interactions and atmospheric effects
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        // Parallax effect for the primary background blob
+        const bg = document.querySelector('.bg-primary-container\\/5');
+        if (bg) {
+            bg.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+        }
+    });
+
+    // Search bar interaction
+    const searchInput = document.querySelector('input[type="text"]');
+    if (searchInput) {
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('active-glow');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('active-glow');
+        });
+    }
+</script>
+</body></html>

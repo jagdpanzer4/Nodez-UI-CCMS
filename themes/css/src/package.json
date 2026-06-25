@@ -1,0 +1,12 @@
+{
+  "name": "vanguard-theme",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tailwindcss -c tailwind.config.js -i main.css -o ../vanguard.css --watch",
+    "build": "tailwindcss -c tailwind.config.js -i main.css -o ../vanguard.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "private": true
+}

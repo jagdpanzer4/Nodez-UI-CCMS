@@ -1,0 +1,4 @@
+Name: Vanguard
+Description: The Digital Vanguard — Tactical precision dark theme for Concrete CMS 9.x
+Version: 1.0.0
+Author: Vanguard
