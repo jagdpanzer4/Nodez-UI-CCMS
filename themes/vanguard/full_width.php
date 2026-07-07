@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= h($thUrl) ?>/css/vanguard.css">
 </head>
-<body class="bg-surface text-on-surface font-body">
+<body class="ccm-page-id-<?= $c->getCollectionID() ?>">
+<div class="ccm-page">
 <?php $view->inc('elements/header.php'); ?>
 <main class="pt-16 vanguard-section">
     <div class="vanguard-container">
@@ -23,6 +24,8 @@
     </div>
 </main>
 <?php $view->inc('elements/footer.php'); ?>
+</div>
+<?php View::element('footer_required'); ?>
 <script src="<?= h($thUrl) ?>/js/vanguard.js"></script>
 </body>
 </html>

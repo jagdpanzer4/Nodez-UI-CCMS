@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
+  corePlugins: {
+    preflight: false, // CCMS ładuje własne CSS przed Tailwindem — Preflight nadpisuje je i psuje panel admina
+  },
   content: [
     '../../**/*.php',
     '../../**/*.html',

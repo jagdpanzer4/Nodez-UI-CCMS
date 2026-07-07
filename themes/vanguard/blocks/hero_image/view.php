@@ -1,14 +1,29 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.'); ?>
 <?php
 $imageUrl = null;
+$fileObj  = null;
 if (!empty($image) && is_object($image) && method_exists($image, 'getURL')) {
     $imageUrl = !$image->isError() ? $image->getURL() : null;
+    $fileObj  = method_exists($image, 'getFile') ? $image->getFile() : $image;
 } elseif (!empty($f) && is_object($f) && method_exists($f, 'getURL')) {
     $imageUrl = $f->getURL();
+    $fileObj  = method_exists($f, 'getFile') ? $f->getFile() : $f;
 } elseif (!empty($fileID)) {
-    $fo = \Concrete\Core\File\File::getByID($fileID);
-    if ($fo && $fo->getFileID()) {
-        $imageUrl = $fo->getURL();
+    $fileObj = \Concrete\Core\File\File::getByID($fileID);
+    if ($fileObj && $fileObj->getFileID()) {
+        $imageUrl = $fileObj->getURL();
+    }
+}
+
+// Pobierz tagi z File Details w CCMS
+$imageTags = null;
+if ($fileObj && is_object($fileObj) && !$fileObj->isError()) {
+    $tagsRaw = $fileObj->getAttribute('tags');
+    if (!empty($tagsRaw)) {
+        $imageTags = trim((string) $tagsRaw);
+        if ($imageTags === '') {
+            $imageTags = null;
+        }
     }
 }
 
@@ -32,12 +47,14 @@ $hasRichBody = !empty($body) && strip_tags((string) $body) !== (string) $body;
 ?>
 <div class="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
     <div class="md:col-span-6 space-y-8">
+        <?php if ($imageTags !== null): ?>
         <div class="vanguard-hero__badge">
             <span class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></span>
             <span class="font-label text-xs tracking-widest text-primary uppercase">
-                System Active // v1.0
+                <?= h($imageTags) ?>
             </span>
         </div>
+        <?php endif; ?>
 
         <?php if (!empty($title)): ?>
         <h1 class="font-headline text-6xl md:text-8xl font-bold tracking-tighter leading-none text-on-surface">

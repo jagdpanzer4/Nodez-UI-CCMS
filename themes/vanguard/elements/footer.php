@@ -37,4 +37,3 @@
 
     </div>
 </footer>
-<?php View::element('footer_required'); ?>

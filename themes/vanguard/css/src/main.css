@@ -2,32 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Tailwind Preflight jest wyłączony (preflight: false w tailwind.config.js)
+ * aby nie nadpisywać stylów panelu CCMS. Poniżej ręczne resety TYLKO dla
+ * elementów motywu (scoped do .ccm-page i body).
+ */
+
+/* ── Minimalne resety motywu ────────────────────────────── */
+.ccm-page *,
+.ccm-page ::before,
+.ccm-page ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+}
+
+body {
+    margin: 0;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* color-scheme tylko wewnątrz treści motywu, NIE na html ani body
+   (propagacja do iframe'ów panelu CCMS psuje ich renderowanie) */
+.ccm-page {
+    color-scheme: dark;
+}
+
+img, svg, video {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 @layer base {
-  html {
-    @apply dark;
-  }
+    /* body NIE ma tła — panel portal CCMS jest prepend do body (poza .ccm-page)
+       i musi renderować się na czystym tle. Wzorzec: Atomik theme (body bez klas). */
+    body {
+        @apply font-body;
+    }
 
-  body {
-    @apply bg-surface text-on-surface font-body;
-  }
+    /* Wszystkie dark styles motywu scoped do .ccm-page — identycznie jak Atomik */
+    .ccm-page {
+        @apply bg-surface text-on-surface;
+        min-height: 100vh;
+    }
 
-  ::selection {
-    background-color: #ffb77d;
-    color: #4d2600;
-  }
+    ::selection {
+        background-color: #ffb77d;
+        color: #4d2600;
+    }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-headline;
-  }
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-headline;
+    }
 
-  /* Custom scrollbar — subtle tactical look */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #121410; }
-  ::-webkit-scrollbar-thumb { background: #45483c; border-radius: 2px; }
+    /* Custom scrollbar — subtle tactical look */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #121410; }
+    ::-webkit-scrollbar-thumb { background: #45483c; border-radius: 2px; }
 
-  /* CCMS edit mode — prevent toolbar overlap with fixed nav */
-  .ccm-toolbar-visible .vanguard-nav { top: 48px; }
-  .ccm-toolbar-visible .vanguard-nav__mobile { top: calc(4rem + 48px); }
+    /* CCMS edit mode — prevent toolbar overlap with fixed nav */
+    .ccm-toolbar-visible .vanguard-nav { top: 48px; }
+    .ccm-toolbar-visible .vanguard-nav__mobile { top: calc(4rem + 48px); }
 }
 
 @layer components {
@@ -269,9 +321,8 @@
 }
 
 @layer utilities {
-  .dark {
-    color-scheme: dark;
-  }
+  /* Uwaga: color-scheme: dark jest scoped do .ccm-page (linia 29),
+     NIE na .dark — <html class="dark"> propagowałoby do iframów CCMS paneli */
 
   /* Glassmorphism utility (for non-component uses) */
   .glass-panel {
@@ -290,4 +341,14 @@
   .text-glow {
     text-shadow: 0 0 15px rgba(255, 183, 125, 0.30);
   }
+}
+
+/* ── CCMS panel detail — force override (poza layerami, wysoki priorytet) ── */
+/* Panel portal jest poza .ccm-page, nasze globalne resety mogą go blokować  */
+div.ccm-panel-detail,
+div.ccm-panel-detail.ccm-panel-detail-transition-fade,
+div.ccm-panel-detail.ccm-panel-detail-transition-fade-apply {
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
 }
